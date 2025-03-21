@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradoks Rio</title>
     <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         body {
             background-color: #111;
             color: #fff;
             font-family: 'Arial', sans-serif;
             text-align: center;
             padding: 50px;
+            animation: fadeIn 2s ease-in-out;
         }
         h1 {
             font-size: 3rem;
@@ -68,6 +73,7 @@
             cursor: pointer;
             border-radius: 5px;
             font-weight: bold;
+            transition: background 0.3s;
         }
         .forum button:hover {
             background: #ff0000;
@@ -100,6 +106,7 @@
                 newComment.innerHTML = `<p>${commentText}</p><button onclick="replyComment(this)">Balas</button><div class='replies'></div>`;
                 commentSection.appendChild(newComment);
                 document.getElementById('commentInput').value = '';
+                playSound();
             }
         }
         
@@ -110,7 +117,13 @@
                 replyDiv.classList.add('reply');
                 replyDiv.innerHTML = `<p>${replyText}</p>`;
                 button.nextElementSibling.appendChild(replyDiv);
+                playSound();
             }
+        }
+        
+        function playSound() {
+            let audio = new Audio('https://www.fesliyanstudios.com/play-mp3/4383');
+            audio.play();
         }
     </script>
 </head>
