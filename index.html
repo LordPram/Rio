@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradoks Rio</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ff0000;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .highlight {
+            color: #00ffcc;
+            font-weight: bold;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            display: inline-block;
+        }
+        .forum {
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+            text-align: left;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .forum h2 {
+            color: #00ffcc;
+            text-align: center;
+        }
+        .forum textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            background: #222;
+            color: #fff;
+            border: 1px solid #00ffcc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .forum button {
+            margin-top: 10px;
+            background: #00ffcc;
+            color: #111;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .forum button:hover {
+            background: #ff0000;
+            color: #fff;
+        }
+        .comments {
+            margin-top: 20px;
+        }
+        .comment {
+            background: #222;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .reply {
+            margin-left: 20px;
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        function addComment() {
+            let commentText = document.getElementById('commentInput').value;
+            if (commentText.trim() !== '') {
+                let commentSection = document.getElementById('commentSection');
+                let newComment = document.createElement('div');
+                newComment.classList.add('comment');
+                newComment.innerHTML = `<p>${commentText}</p><button onclick="replyComment(this)">Balas</button><div class='replies'></div>`;
+                commentSection.appendChild(newComment);
+                document.getElementById('commentInput').value = '';
+            }
+        }
+        
+        function replyComment(button) {
+            let replyText = prompt("Masukkan balasan kamu:");
+            if (replyText && replyText.trim() !== '') {
+                let replyDiv = document.createElement('div');
+                replyDiv.classList.add('reply');
+                replyDiv.innerHTML = `<p>${replyText}</p>`;
+                button.nextElementSibling.appendChild(replyDiv);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Paradoks Rio</h1>
+        <p>"Tak Hingga adalah <span class="highlight">Nol</span>, Nol adalah <span class="highlight">Tak Hingga</span>."</p>
+        <p>Dalam teori baru ini, konsep dasar matematika dirombak: <span class="highlight">∞ = 0</span>. Paradoks ini mengubah cara kita memahami limit, pembagian, dan struktur bilangan.</p>
+        <p>Siapkah dunia menerima kebenaran ini?</p>
+    </div>
+    
+    <div class="forum">
+        <h2>Forum Diskusi</h2>
+        <p>Bagikan pendapatmu tentang Paradoks Rio!</p>
+        <textarea id="commentInput" placeholder="Tulis komentar kamu di sini..."></textarea>
+        <br>
+        <button onclick="addComment()">Kirim</button>
+        <div class="comments" id="commentSection"></div>
+    </div>
+</body>
+</html>
